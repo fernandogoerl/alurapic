@@ -1,9 +1,9 @@
 <h3 class="text-center p-3">Login</h3>
 
-<form [formGroup]="loginForm" class="form">
+<form [formGroup]="loginForm" class="form" (submit)="login()">
   
   <div class="form-group">
-      <input
+      <input #userNameInput
         formControlName="userName"
         class="form-control"
         placeholder="user name"
@@ -26,7 +26,12 @@
       </ap-vmessage>
   </div>
 
-  <button [disabled]=loginForm.invalid type="submit" class="btn btn-primary btn-block">login</button>
+  <button
+    [disabled]=loginForm.invalid
+    type="submit"
+    class="btn btn-primary btn-block">
+    login
+  </button>
 
 </form>
 
