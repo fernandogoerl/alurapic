@@ -17,7 +17,6 @@ export class PhotoService {
   
   listFromUserPaginated(username: string, page: number) {
     const params = new HttpParams().append('page', page.toString());
-    console.log(params.toString());
     
 
     return this.http
