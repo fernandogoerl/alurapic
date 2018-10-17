@@ -6,7 +6,7 @@
     <input formControlName="email" placeholder="email" class="form-control" autofocus >      
     <ap-vmessage
       *ngIf="signUpForm.get('email').errors?.required"
-      text="Email is required!">
+      text="Email is required">
     </ap-vmessage>
     <ap-vmessage
       *ngIf="signUpForm.get('email').errors?.email"
@@ -18,7 +18,7 @@
     <input formControlName="fullName" placeholder="full name" class="form-control">
     <ap-vmessage
       *ngIf="signUpForm.get('fullName').errors?.required"
-      text="Full Name is required!">
+      text="Full Name is required">
     </ap-vmessage>
     <ap-vmessage
       *ngIf="signUpForm.get('fullName').errors?.minlength"
@@ -34,7 +34,7 @@
     <input formControlName="userName" placeholder="user name" class="form-control">
     <ap-vmessage
       *ngIf="signUpForm.get('userName').errors?.required"
-      text="Username is required!">
+      text="Username is required">
     </ap-vmessage>
     <ap-vmessage
       *ngIf="signUpForm.get('userName').errors?.minlength"
@@ -48,13 +48,22 @@
       *ngIf="signUpForm.get('userName').errors?.lowercase"
       text="Must be lowercase">
     </ap-vmessage>
+    <ap-vmessage
+      *ngIf="signUpForm.get('userName').errors?.userNameTaken"
+      text="Username already taken">
+    </ap-vmessage>
+    <small 
+      *ngIf="signUpForm.get('userName').valid"
+      class="text-success">
+      User available
+    </small>
   </div>
 
   <div class="form-group">
     <input formControlName="password" type="password" placeholder="password" class="form-control">
     <ap-vmessage
       *ngIf="signUpForm.get('password').errors?.required"
-      text="Password is required!">
+      text="Password is required">
     </ap-vmessage>
     <ap-vmessage
       *ngIf="signUpForm.get('password').errors?.minlength"
@@ -66,7 +75,11 @@
     </ap-vmessage>
   </div>
 
-  <button class="btn btn-primary btn-block">Register</button>
+  <button
+   [disabled]="signUpForm.invalid || signUpForm.pending"
+    class="btn btn-primary btn-block">
+    Register
+  </button>
 
   <p>Already a user?
     <a [routerLink]="['']"> Sign In!</a>
